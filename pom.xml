@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>co.com.viveres.susy.microservicesale</groupId>
-	<artifactId>microservice-sale</artifactId>
+	<artifactId>tds-microservice-sale</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>microservice-sale</name>
+	<name>tds-microservice-sale</name>
 	<description>Microservicio para la gestion de ventas y detalles de ventas</description>
 	<properties>
 		<java.version>11</java.version>
