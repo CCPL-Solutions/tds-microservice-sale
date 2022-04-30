@@ -64,7 +64,7 @@
 
 		<dependency>
 			<groupId>co.com.viveres.susy.microservicecommons</groupId>
-			<artifactId>microservice-commons</artifactId>
+			<artifactId>tds-microservice-commons</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
@@ -88,6 +88,11 @@
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.8</version>
+        </dependency>
 	</dependencies>
 
 	<build>

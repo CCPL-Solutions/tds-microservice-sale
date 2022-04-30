@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import co.com.viveres.susy.microservicesale.dto.ResponseProductClientProductDto;
 import co.com.viveres.susy.microservicesale.dto.RequestProductClientStockDto;
 
-@FeignClient(name = "microservice-product", path = "/v1/product", configuration = ClientConfiguration.class)
+@FeignClient(
+	name = "microservice-product", 
+	path = "/v1/product", 
+	configuration = ClientConfiguration.class)
 public interface IProductRestClient {
 
 	@GetMapping(path = "/{product-id}")

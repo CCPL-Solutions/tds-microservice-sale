@@ -24,7 +24,6 @@ import co.com.viveres.susy.microservicesale.dto.SaleInputDto;
 import co.com.viveres.susy.microservicesale.dto.SaleOutputDto;
 import co.com.viveres.susy.microservicesale.entity.SaleDetailEntity;
 import co.com.viveres.susy.microservicesale.entity.SaleEntity;
-import co.com.viveres.susy.microservicesale.repository.ISaleDetailRepository;
 import co.com.viveres.susy.microservicesale.repository.ISaleRepository;
 import co.com.viveres.susy.microservicesale.util.ResponseMessages;
 

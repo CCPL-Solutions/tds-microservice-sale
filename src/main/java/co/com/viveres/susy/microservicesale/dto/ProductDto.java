@@ -16,7 +16,7 @@ public class ProductDto implements Serializable {
 	private Long id;
 
 	private String name;
-	private String brand;
+	private BrandDto brand;
 	private Double price;
 	private ContentDto content;
 }
