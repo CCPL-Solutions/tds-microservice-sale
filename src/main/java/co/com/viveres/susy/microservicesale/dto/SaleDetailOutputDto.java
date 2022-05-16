@@ -2,6 +2,7 @@ package co.com.viveres.susy.microservicesale.dto;
 
 import java.io.Serializable;
 
+import co.com.viveres.susy.microservicecommons.dto.ProductDto;
 import lombok.Data;
 
 @Data

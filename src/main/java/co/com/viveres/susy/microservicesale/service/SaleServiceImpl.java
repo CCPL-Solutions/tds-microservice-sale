@@ -10,15 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import co.com.viveres.susy.microservicecommons.dto.ContentDto;
+import co.com.viveres.susy.microservicecommons.dto.ProductDto;
 import co.com.viveres.susy.microservicecommons.entity.MessageEntity;
 import co.com.viveres.susy.microservicecommons.exceptions.GenericException;
 import co.com.viveres.susy.microservicecommons.repository.IMessageRepository;
 import co.com.viveres.susy.microservicesale.client.IProductRestClient;
-import co.com.viveres.susy.microservicesale.dto.ContentDto;
-import co.com.viveres.susy.microservicesale.dto.ProductDto;
 import co.com.viveres.susy.microservicesale.dto.QualityDto;
 import co.com.viveres.susy.microservicesale.dto.RequestProductClientStockDto;
-import co.com.viveres.susy.microservicesale.dto.ResponseProductClientProductDto;
 import co.com.viveres.susy.microservicesale.dto.SaleDetailOutputDto;
 import co.com.viveres.susy.microservicesale.dto.SaleInputDto;
 import co.com.viveres.susy.microservicesale.dto.SaleOutputDto;
@@ -55,9 +54,9 @@ public class SaleServiceImpl implements ISaleService {
 
 		request.getDetails().forEach(detail -> {
 
-			ResponseEntity<ResponseProductClientProductDto> response = this.productClientRest
+			ResponseEntity<ProductDto> response = this.productClientRest
 					.getById(detail.getProductId());
-			ResponseProductClientProductDto product = response.getBody();
+			ProductDto product = response.getBody();
 
 			SaleDetailEntity detailModel = new SaleDetailEntity();
 			detailModel.setProductId(detail.getProductId());
@@ -127,10 +126,10 @@ public class SaleServiceImpl implements ISaleService {
 
 			SaleDetailOutputDto detail = new SaleDetailOutputDto();
 
-			ResponseEntity<ResponseProductClientProductDto> responseProductService = 
+			ResponseEntity<ProductDto> responseProductService = 
 					this.productClientRest.getById(saleDetail.getProductId());
 			
-			ResponseProductClientProductDto product = responseProductService.getBody();
+			ProductDto product = responseProductService.getBody();
 
 			ProductDto productDto = new ProductDto();
 			productDto.setId(product.getId());

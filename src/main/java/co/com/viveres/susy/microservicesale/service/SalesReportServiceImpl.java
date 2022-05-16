@@ -15,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import co.com.viveres.susy.microservicecommons.dto.ProductDto;
 import co.com.viveres.susy.microservicesale.client.IProductRestClient;
-import co.com.viveres.susy.microservicesale.dto.ResponseProductClientProductDto;
 import co.com.viveres.susy.microservicesale.entity.SaleDetailEntity;
 import co.com.viveres.susy.microservicesale.entity.SaleEntity;
 import co.com.viveres.susy.microservicesale.repository.ISaleRepository;
@@ -63,7 +63,7 @@ public class SalesReportServiceImpl implements ISalesReportService {
 	}
 	
 	private List<Object> mapRecord(SaleDetailEntity saleDetail, 
-		ResponseProductClientProductDto product) {
+		ProductDto product) {
 		return Arrays.asList(
 			String.valueOf(saleDetail.getSale().getDate()),
 			String.valueOf(saleDetail.getSale().getTime()),
@@ -76,8 +76,8 @@ public class SalesReportServiceImpl implements ISalesReportService {
 		);
 	}
 
-	private ResponseProductClientProductDto findProduct(SaleDetailEntity saleDetail) {
-		ResponseEntity<ResponseProductClientProductDto> responseProductService = 
+	private ProductDto findProduct(SaleDetailEntity saleDetail) {
+		ResponseEntity<ProductDto> responseProductService = 
 				this.productClientRest.getById(saleDetail.getProductId());
 		return responseProductService.getBody();	
 	}	
