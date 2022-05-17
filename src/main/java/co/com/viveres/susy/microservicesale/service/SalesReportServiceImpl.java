@@ -70,7 +70,7 @@ public class SalesReportServiceImpl implements ISalesReportService {
 			String.valueOf(saleDetail.getSale().getId()),
 			product.getName(),
 			product.getBrand().getName(),
-			String.format("%s %s", product.getContent().getValue(), product.getContent().getMeasure()),
+			String.format("%s %s", product.getContent().getValue(), product.getContent().getMeasure().getName()),
 			String.valueOf(saleDetail.getNumberItems()),
 			BigDecimal.valueOf(saleDetail.getPriceUnit() * saleDetail.getNumberItems()).setScale(0,BigDecimal.ROUND_DOWN)
 		);
