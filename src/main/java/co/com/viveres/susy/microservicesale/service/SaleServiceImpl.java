@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import co.com.viveres.susy.microservicecommons.dto.ContentDto;
 import co.com.viveres.susy.microservicecommons.dto.ProductDto;
 import co.com.viveres.susy.microservicecommons.entity.MessageEntity;
-import co.com.viveres.susy.microservicecommons.exceptions.GenericException;
+import co.com.viveres.susy.microservicecommons.exception.GenericException;
 import co.com.viveres.susy.microservicecommons.repository.IMessageRepository;
 import co.com.viveres.susy.microservicesale.client.IProductRestClient;
 import co.com.viveres.susy.microservicesale.dto.QualityDto;
