@@ -8,14 +8,12 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.viveres.susy.microservicesale.api.ISalesReportApi;
 import co.com.viveres.susy.microservicesale.service.ISalesReportService;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/reports")
 public class SalesReportApiImpl implements ISalesReportApi {
