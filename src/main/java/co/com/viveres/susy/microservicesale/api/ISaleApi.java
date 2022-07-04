@@ -1,7 +1,9 @@
 package co.com.viveres.susy.microservicesale.api;
 
-import java.util.List;
+import java.time.LocalDate;
 
+import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.com.viveres.susy.microservicesale.dto.SaleInputDto;
 import co.com.viveres.susy.microservicesale.dto.SaleOutputDto;
@@ -58,7 +61,11 @@ public interface ISaleApi {
     @GetMapping(
         path = "", 
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<SaleOutputDto>> getAll();
+    public ResponseEntity<Page<SaleOutputDto>> getAll(
+    		@RequestParam(value = "page", required = false, defaultValue = "0") int page, 
+    		@RequestParam(value = "size", required = false, defaultValue = "10") int size,
+    		@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    		@RequestParam(value = "date", required = false) LocalDate date);
 
 	@ApiOperation(
 		value = "findSaleById", 

@@ -7,6 +7,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -92,20 +96,21 @@ public class SaleServiceImpl implements ISaleService {
 	}
 
 	@Override
-	public List<SaleOutputDto> getAll() {
-		List<SaleEntity> models = this.saleRepository.findAll();
-		return this.mapOutLIstSupplierEntityToDto(models);
+	public Page<SaleOutputDto> getAll(int page, int size, LocalDate date){
+		Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Order.desc("date")));
+		Page<SaleEntity> saleEntityPage = null;
+		
+		if (date != null) {
+			saleEntityPage = this.saleRepository.findByDate(date, pageable);
+		}else {
+			saleEntityPage = this.saleRepository.findAll(pageable);
+		}
+		
+		return this.mapOutLIstSupplierEntityToDto(saleEntityPage);
 	}
 
-	private List<SaleOutputDto> mapOutLIstSupplierEntityToDto(List<SaleEntity> models) {
-
-		List<SaleOutputDto> dtos = new ArrayList<>();
-		models.forEach(model -> {
-			SaleOutputDto dto = this.mapOutSaleEntityToDto(model);
-			dtos.add(dto);
-		});
-
-		return dtos;
+	private Page<SaleOutputDto> mapOutLIstSupplierEntityToDto(Page<SaleEntity> saleEntityPage) {
+		return saleEntityPage.map(this::mapOutSaleEntityToDto);
 	}
 
 	@Override

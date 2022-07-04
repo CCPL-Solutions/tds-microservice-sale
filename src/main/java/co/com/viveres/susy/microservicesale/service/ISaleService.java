@@ -1,6 +1,8 @@
 package co.com.viveres.susy.microservicesale.service;
 
-import java.util.List;
+import java.time.LocalDate;
+
+import org.springframework.data.domain.Page;
 
 import co.com.viveres.susy.microservicesale.dto.SaleInputDto;
 import co.com.viveres.susy.microservicesale.dto.SaleOutputDto;
@@ -9,7 +11,7 @@ public interface ISaleService {
 
     public void create(SaleInputDto request);
 
-    public List<SaleOutputDto> getAll();
+    public Page<SaleOutputDto> getAll(int page, int size, LocalDate date);
 
     public SaleOutputDto getById(Long id);
 

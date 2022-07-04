@@ -1,8 +1,9 @@
 package co.com.viveres.susy.microservicesale.controller;
 
-import java.util.List;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,8 +27,8 @@ public class SaleApiImpl implements ISaleApi {
     }
 
     @Override
-    public ResponseEntity<List<SaleOutputDto>> getAll() {
-        List<SaleOutputDto> response = service.getAll();
+    public ResponseEntity<Page<SaleOutputDto>> getAll(int page, int size, LocalDate date) {
+    	Page<SaleOutputDto> response = service.getAll(page, size, date);
         return ResponseEntity.ok(response);
     }
 
