@@ -6,5 +6,7 @@ public class ResponseMessages {
 	
 	public static final String ERROR_INTERNAL_PROCESSING_TX = "viveres-susy.generico.error-procesamiento-tx";
 	
+	public static final String CANTIDAD_INSUFICIENTE_PRODUCTO = "viveres-susy.ventas.cantidad-insuficiente";
+	
 
 }

@@ -61,6 +61,11 @@ public class SaleServiceImpl implements ISaleService {
 			ResponseEntity<ProductDto> response = this.productClientRest
 					.getById(detail.getProductId());
 			ProductDto product = response.getBody();
+			
+			if (product.getCurrentNumItems() < detail.getNumItems()) {
+				throw this.throwGenericException(ResponseMessages.CANTIDAD_INSUFICIENTE_PRODUCTO, 
+						product.getDescription());
+			}
 
 			SaleDetailEntity detailModel = new SaleDetailEntity();
 			detailModel.setProductId(detail.getProductId());
@@ -97,7 +102,10 @@ public class SaleServiceImpl implements ISaleService {
 
 	@Override
 	public Page<SaleOutputDto> getAll(int page, int size, LocalDate date){
-		Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Order.desc("date")));
+		Pageable pageable = PageRequest.of(page, size, Sort.by(
+				Sort.Order.desc("date"),
+				Sort.Order.desc("time")));
+		
 		Page<SaleEntity> saleEntityPage = null;
 		
 		if (date != null) {
