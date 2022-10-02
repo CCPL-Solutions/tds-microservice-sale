@@ -1,13 +1,10 @@
 package co.com.viveres.susy.microservicesale.service;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
-
+import co.com.viveres.susy.microservicecommons.dto.ProductDto;
+import co.com.viveres.susy.microservicesale.client.IProductRestClient;
+import co.com.viveres.susy.microservicesale.entity.SaleDetailEntity;
+import co.com.viveres.susy.microservicesale.entity.SaleEntity;
+import co.com.viveres.susy.microservicesale.repository.ISaleRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
@@ -15,11 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import co.com.viveres.susy.microservicecommons.dto.ProductDto;
-import co.com.viveres.susy.microservicesale.client.IProductRestClient;
-import co.com.viveres.susy.microservicesale.entity.SaleDetailEntity;
-import co.com.viveres.susy.microservicesale.entity.SaleEntity;
-import co.com.viveres.susy.microservicesale.repository.ISaleRepository;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class SalesReportServiceImpl implements ISalesReportService {
