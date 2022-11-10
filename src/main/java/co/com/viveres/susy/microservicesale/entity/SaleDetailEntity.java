@@ -15,12 +15,12 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "SALE_DETAIL")
+@Table(name = "\"SALE_DETAILS\"")
 public class SaleDetailEntity {
 
     @Id
-    @SequenceGenerator(name = "SEQ_SALE_DETAIL_ID", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_SALE_DETAIL_ID")
+    @SequenceGenerator(name = "\"SEQ_SALE_DETAIL_ID\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "\"SEQ_SALE_DETAIL_ID\"")
     @Column(name = "ID", unique = true, nullable = false)
     private Long id;
 

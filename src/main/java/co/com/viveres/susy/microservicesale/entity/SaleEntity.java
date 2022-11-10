@@ -18,12 +18,12 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "SALE")
+@Table(name = "\"SALES\"")
 public class SaleEntity {
 
     @Id
-    @SequenceGenerator(name = "SEQ_SALE_ID", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_SALE_ID")
+    @SequenceGenerator(name = "\"SEQ_SALE_ID\"", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "\"SEQ_SALE_ID\"")
     @Column(name = "ID", unique = true, nullable = false)
     private Long id;
 
