@@ -43,7 +43,7 @@ public interface ISaleApi {
         path = "", 
         consumes = MediaType.APPLICATION_JSON_VALUE, 
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SaleOutputDto> create(
+    ResponseEntity<SaleOutputDto> create(
         @Validated(ICreateSaleValidation.class) @RequestBody SaleInputDto request);
 
 	@ApiOperation(
@@ -61,7 +61,7 @@ public interface ISaleApi {
     @GetMapping(
         path = "", 
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Page<SaleOutputDto>> getAll(
+    ResponseEntity<Page<SaleOutputDto>> getAll(
     		@RequestParam(value = "page", required = false, defaultValue = "0") int page, 
     		@RequestParam(value = "size", required = false, defaultValue = "10") int size,
     		@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -82,7 +82,7 @@ public interface ISaleApi {
     @GetMapping(
         path = "/{sale-id}", 
         produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SaleOutputDto> getById(@PathVariable("sale-id") Long id);
+    ResponseEntity<SaleOutputDto> getById(@PathVariable("sale-id") Long id);
 
 	@ApiOperation(
 		value = "updateSale", 
@@ -98,7 +98,7 @@ public interface ISaleApi {
     @PutMapping(
         path = "/{sale-id}", 
         consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> update(@PathVariable("sale-id") Long id, @RequestBody SaleInputDto request);
+    ResponseEntity<Void> update(@PathVariable("sale-id") Long id, @RequestBody SaleInputDto request);
 
 	@ApiOperation(
 		value = "deleteSale", 
@@ -112,6 +112,6 @@ public interface ISaleApi {
 		@ApiResponse(code = 500, message = "Internal server error")
 	})		
     @DeleteMapping(path = "/{sale-id}")
-    public ResponseEntity<Void> delete(@PathVariable("sale-id") Long id);
+    ResponseEntity<Void> delete(@PathVariable("sale-id") Long id);
 
 }
