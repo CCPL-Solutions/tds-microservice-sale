@@ -9,6 +9,6 @@ public interface ISalesIndicatorService {
 
     SaleIndicatorRsDto getSalesIndicators();
 
-    List<SalesGraphRsDto> getGraphs(int numDays);
+    List<SalesGraphRsDto> getGraphs(int numDays, int numMonths);
 
 }

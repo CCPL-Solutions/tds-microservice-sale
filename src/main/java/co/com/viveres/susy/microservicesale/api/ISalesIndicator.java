@@ -14,6 +14,6 @@ public interface ISalesIndicator {
     ResponseEntity<SaleIndicatorRsDto> getSalesIndicators();
 
     @GetMapping(value = "/graphs")
-    ResponseEntity<List<SalesGraphRsDto>> getGraphs(@QueryParam("numDays") int numDays);
+    ResponseEntity<List<SalesGraphRsDto>> getGraphs(@QueryParam("numDays") int numDays, @QueryParam("numMonths") int numMonths);
 
 }

@@ -25,8 +25,8 @@ public class SalesIndicatorApiImpl implements ISalesIndicator {
     }
 
     @Override
-    public ResponseEntity<List<SalesGraphRsDto>> getGraphs(int numDays) {
-        List<SalesGraphRsDto> response = this.salesIndicatorService.getGraphs(numDays);
+    public ResponseEntity<List<SalesGraphRsDto>> getGraphs(int numDays, int numMonths) {
+        List<SalesGraphRsDto> response = this.salesIndicatorService.getGraphs(numDays, numMonths);
         return ResponseEntity.ok(response);
     }
 
