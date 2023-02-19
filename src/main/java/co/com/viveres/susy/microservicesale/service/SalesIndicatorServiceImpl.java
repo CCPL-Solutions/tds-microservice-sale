@@ -4,7 +4,9 @@ import co.com.viveres.susy.microservicesale.dto.SaleDaysReportSum;
 import co.com.viveres.susy.microservicesale.dto.SaleIndicatorRsDto;
 import co.com.viveres.susy.microservicesale.dto.SaleMonthsReportSum;
 import co.com.viveres.susy.microservicesale.dto.SalesGraphRsDto;
+import co.com.viveres.susy.microservicesale.dto.TotalProductsSold;
 import co.com.viveres.susy.microservicesale.entity.SaleEntity;
+import co.com.viveres.susy.microservicesale.repository.ISaleDetailRepository;
 import co.com.viveres.susy.microservicesale.repository.ISaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +25,9 @@ public class SalesIndicatorServiceImpl implements ISalesIndicatorService {
 
     @Autowired
     private ISaleRepository saleRepository;
+
+    @Autowired
+    private ISaleDetailRepository saleDetailRepository;
 
     @Override
     public SaleIndicatorRsDto getSalesIndicators() {
@@ -45,6 +51,11 @@ public class SalesIndicatorServiceImpl implements ISalesIndicatorService {
         return Arrays.asList(graphDaysRsDto, graphMonthRsDto);
     }
 
+    @Override
+    public List<TotalProductsSold> getTotalProductsSold(LocalDate date) {
+        return saleDetailRepository.findTotalProductsSold(date);
+    }
+
     private SalesGraphRsDto getSalesDaysGraph(int numDays) {
         List<SaleDaysReportSum> sales = this.saleRepository.findAllGroup();
 
@@ -63,22 +74,24 @@ public class SalesIndicatorServiceImpl implements ISalesIndicatorService {
     private List<BigDecimal> getAmountDays(List<SaleDaysReportSum> sales, int numDays) {
         List<BigDecimal> amountListDays = new ArrayList<>();
         sales.stream()
-                .sorted(Comparator.comparing(SaleDaysReportSum::getDate))
+                .sorted(Comparator.comparing(SaleDaysReportSum::getDate).reversed())
                 .collect(Collectors.toList())
                 .stream().limit(numDays)
                 .mapToDouble(SaleDaysReportSum::getSalesSum)
                 .forEach(value -> amountListDays.add(BigDecimal.valueOf(value)));
+        Collections.reverse(amountListDays);
         return amountListDays;
     }
 
     private List<String> getLabelListDays(List<SaleDaysReportSum> sales, int numDays) {
         List<String> labelListDays = new ArrayList<>();
         sales.stream()
-                .sorted(Comparator.comparing(SaleDaysReportSum::getDate))
+                .sorted(Comparator.comparing(SaleDaysReportSum::getDate).reversed())
                 .collect(Collectors.toList())
                 .stream().limit(numDays)
                 .map(SaleDaysReportSum::getDate)
                 .forEach(value -> labelListDays.add(value.toString()));
+        Collections.reverse(labelListDays);
         return labelListDays;
     }
 
